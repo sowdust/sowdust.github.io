@@ -65,6 +65,7 @@
 		joined_filters = '{' + filters.join() + '}';
 		encoded_filters = btoa(joined_filters).replace('=','');
 		var search_url = 'https://www.facebook.com/search/' + search_type + '/?q=';
+
 		search_url     += search_keyword + '&epa=FILTERS&filters=' + encoded_filters;
 		return search_url;
 	}
@@ -129,14 +130,12 @@
 	<p>Facebook has recently <a href="https://www.vice.com/en_us/article/zmpgmx/facebook-stops-graph-search" target="_blank">closed the opportunity to use its Graph search</a>.<br />
 	<a href="https://twitter.com/djnemec" target="_blank">D Nemec</a> and <a href="https://twitter.com/henkvaness" target="_blank">Henk Van Ess</a> have done a great job <a href="https://twitter.com/henkvaness/status/1136937742712094721" target="_blank">reverse engineering the functioning of the web interface</a> and published the reults <a href="https://gist.github.com/nemec/2ba8afa589032f20e2d6509512381114" target="_blank">here</a>.</p>
 	<p>This page tries to be a simple interface to build those search queries. It is still experimental, and has been built very quickly in order to overcome the void left by the old graph search.</p>
-	<p>	Any suggestion, issue, bug, proposal etc. can be reported on the <a href="https://github.com/sowdust/sowdust.github.io" target="_blank">project's github page</a> or you can write an email to 
-	<script language="JavaScript" type="text/JavaScript">
-		var kkkk = "mattia.vinci"
-		var mmmm = "@"
-		var llll = "mediaservice.net"
-		document.write('<a href=\"mailto:' + kkkk + mmmm + llll +'\">' + kkkk + mmmm + llll +'</a>');
-	</script>.</p>
+	<p>	Any suggestion, issue, bug, proposal etc. can be reported on the <a href="https://github.com/sowdust/sowdust.github.io" target="_blank">project's github page</a>.</p>
 	<p>For <b>some</b> searches, using a keyword is necessary. If you don't want to filter via keyword, try to leave this field blank at first. If you get no results, you can also try to add more "neutral" filters (i.e.: sort by chronological order). If it still doesn't work, try to put the name of the entiry you are filtering for as a keyword. For example, if you are looking for people living in London, simply use "london" as a keyword.</p>
+
+	<div>
+		<b>Disclaimer</b>: this is simply an html page that shows how the new Facebook search works providing a way to form search links. Make sure to read <a href="https://www.facebook.com/terms.php">Facebook Terms of Service</a>. The authors of this page will not be held responsible for any misuse.
+	</div>
 </div>
 
 
@@ -433,10 +432,10 @@ What do you want to search:
 
 <h3>Filter by keywords</h3>
 
-For <b>some</b> searches, using a keyword is necessary. If you don't want to filter via keyword, try to leave this field blank at first. If you get no results, you can also try to add more filters (i.e.: sort by chronological order) before giving up and using a specific keyword.<br /><br />
 <input type="text" name="search_keyword" id="search_keyword" placeholder="Keywords" value="" size="30">
 
 </div>
+
 
 <div id = "final-buttons">
 <input type="submit" name="make_url" onClick="alert(make_url())" value="Show URL">
