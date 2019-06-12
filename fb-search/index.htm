@@ -65,6 +65,7 @@
 		joined_filters = '{' + filters.join() + '}';
 		encoded_filters = btoa(joined_filters).replace('=','');
 		var search_url = 'https://www.facebook.com/search/' + search_type + '/?q=';
+
 		search_url     += search_keyword + '&epa=FILTERS&filters=' + encoded_filters;
 		return search_url;
 	}
@@ -127,10 +128,18 @@
 
 <div id="info">
 	<h2>About</h2>
-	Facebook has recently closed the opportunity to use its Graph search.<br />
-	<a href="https://twitter.com/djnemec" target="_blank">djnemec</a> has done a great job reverse engineering the functioning of the web interface and published it <a href="https://gist.github.com/nemec/2ba8afa589032f20e2d6509512381114" target="_blank">here</a>.<br />
-	This page tries to be a simple interface to build those search queries. It is still experimental, and has been built very quickly in order to overcome void left by the old graph search. <br/>
-	Any suggestion, issue, bug, proposal etc. can be reported on the <a href="https://github.com/sowdust/sowdust.github.io" target="_blank">project's github page</a>. 
+	<p>Facebook has recently <a href="https://www.vice.com/en_us/article/zmpgmx/facebook-stops-graph-search" target="_blank">closed the opportunity to use its Graph search</a>.<br />
+	<a href="https://twitter.com/djnemec" target="_blank">D Nemec</a> and <a href="https://twitter.com/henkvaness" target="_blank">Henk Van Ess</a> have done a great job <a href="https://twitter.com/henkvaness/status/1136937742712094721" target="_blank">understanding the functioning of the web interface</a> and published the reults <a href="https://gist.github.com/nemec/2ba8afa589032f20e2d6509512381114" target="_blank">here</a>.</p>
+	<p>This page tries to be a simple interface to show how those search queries are built. It is still experimental, and has been written very quickly in order to overcome the void left by the old graph search. Any suggestion, issue, bug, proposal etc. can be reported on the <a href="https://github.com/sowdust/sowdust.github.io" target="_blank">project's github page</a>.</p>
+	<p>The tool is made by <script type="text/javascript">
+document.write(atob("PGEgaHJlZj0ibWFpbHRvOm1hdHRpYS52aW5jaUBtZWRpYXNlcnZpY2UubmV0Ij5zb3dkdXN0PC9hPg=="));
+</script> and it is completely <b>free</b> and <b>open</b>, as knowledge should be.</p>
+	<p>For <b>some</b> searches, using a keyword is necessary. If you don't want to filter via keyword, try to leave this field blank at first. If you get no results, you can also try to add more "neutral" filters (i.e.: sort by chronological order). If it still doesn't work, try to put the name of the entity you are filtering for as a keyword. For example, if you are looking for people living in London, just use "london" as a keyword.</p>
+
+	<div>
+	<b>Disclaimer</b>: this is simply an html page that shows how the new Facebook search works providing a way to form search links. Make sure to read <a href="https://www.facebook.com/terms.php">Facebook Terms of Service</a>. The authors of this page will not be held responsible for any misuse.<br />
+	<b>Do not copy and paste</b> values inside the below forms from unknown sources unless you first inspect their content: pasting malicious information may result in a <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-Site scripting</a> attack.
+	</div>
 </div>
 
 
@@ -139,15 +148,15 @@
 	<h2>Search Scope</h2>
 What do you want to search:
 
-<select name="search_type" id="select_search_type">
+<select name="search_type" id="select_search_type" onchange="show_only(this)">
 	<option disabled selected value> -- select a search type -- </option>
-	<option class="" onClick="show_only(this)" value="posts">Posts</option>
-	<option class="" onClick="show_only(this)" value="people">People</option>
-	<option class="" onClick="show_only(this)" value="photos">Photos</option>
-	<option class="" onClick="show_only(this)" value="pages">Pages</option>
-	<option class="" onClick="show_only(this)" value="places">Places</option>
-	<option class="" onClick="show_only(this)" value="videos">Videos</option>
-	<option class="" onClick="show_only(this)" value="top">Top</option>
+	<option class="" value="posts">Posts</option>
+	<option class="" value="people">People</option>
+	<option class="" value="photos">Photos</option>
+	<option class="" value="pages">Pages</option>
+	<option class="" value="places">Places</option>
+	<option class="" value="videos">Videos</option>
+	<option class="" value="top">Top</option>
 </select>
 
 </div>
@@ -427,10 +436,10 @@ What do you want to search:
 
 <h3>Filter by keywords</h3>
 
-For <b>some</b> searches, using a keyword is necessary. If you don't want to filter via keyword, try to leave this field blank at first. If you get no results, you can also try to add more filters (i.e.: sort by chronological order) before giving up and using a specific keyword.<br /><br />
 <input type="text" name="search_keyword" id="search_keyword" placeholder="Keywords" value="" size="30">
 
 </div>
+
 
 <div id = "final-buttons">
 <input type="submit" name="make_url" onClick="alert(make_url())" value="Show URL">
