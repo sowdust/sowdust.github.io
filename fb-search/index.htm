@@ -74,6 +74,7 @@
 		var filter_name = obj.className;
 		var value_field = filter_name + '-' + arg_name;
 		arg_value = document.getElementsByClassName(value_field);
+		var value = '';
 		for (i = 0; i < arg_value.length; i++) {
   			if(arg_value[i].value){
   				value = arg_value[i].value;
