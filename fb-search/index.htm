@@ -34,7 +34,7 @@
 </style>
 <script type="text/javascript">
 
-	var search_types = ['top','videos','posts','people','photos','pages','places'];
+	var search_types = ['top','videos','posts','people','photos','pages','places','events'];
 	var filters = []
 
 	function clear_filters() { 
@@ -90,6 +90,7 @@
 
 	function add_date_filter() {
 
+		// get user values 
 		start_year = document.getElementById('start_year').value;
 		start_month = start_year + '-' + document.getElementById('start_month').value;
 		start_day = start_month + '-' + document.getElementById('start_day').value;
@@ -98,10 +99,29 @@
 		end_month = end_year + '-' + document.getElementById('end_month').value;
 		end_day = end_month + '-' + document.getElementById('end_day').value;
 
-		filter = '"rp_creation_time":"{\\"name\\":\\"creation_time\\",\\"args\\":\\"{\\\\\\"start_year\\\\\\":\\\\\\"'+ start_year + '\\\\\\",\\\\\\"start_month\\\\\\":\\\\\\"' + start_month +'\\\\\\",\\\\\\"end_year\\\\\\":\\\\\\"' + end_year + '\\\\\\",\\\\\\"end_month\\\\\\":\\\\\\"' + end_month + '\\\\\\",\\\\\\"start_day\\\\\\":\\\\\\"' + start_day + '\\\\\\",\\\\\\"end_day\\\\\\":\\\\\\"' + end_day+ '\\\\\\"}\\"}"';
+		search_type = document.getElementById('select_search_type').value;
+
+		console.log('a'+start_year);
+		console.log('b'+start_month);
+		console.log('c'+start_day);
+
+
+		if(search_type == 'events') {
+
+			date_interval = start_day + '~' + end_day;
+			console.log(date_interval);
+			filter = '"rp_events_date":"{\\"name\\":\\"filter_events_date\\",\\"args\\":\\"' + date_interval + '\\"}"';
+			filters_div = document.getElementById('current-filters');
+			filters_div.innerHTML += '<li><b> rp_events_date </b> {"name":"filter_events_date","args":"' + date_interval +'"}</li>';
+
+		} else {
+
+			filter = '"rp_creation_time":"{\\"name\\":\\"creation_time\\",\\"args\\":\\"{\\\\\\"start_year\\\\\\":\\\\\\"'+ start_year + '\\\\\\",\\\\\\"start_month\\\\\\":\\\\\\"' + start_month +'\\\\\\",\\\\\\"end_year\\\\\\":\\\\\\"' + end_year + '\\\\\\",\\\\\\"end_month\\\\\\":\\\\\\"' + end_month + '\\\\\\",\\\\\\"start_day\\\\\\":\\\\\\"' + start_day + '\\\\\\",\\\\\\"end_day\\\\\\":\\\\\\"' + end_day+ '\\\\\\"}\\"}"';
+			filters_div = document.getElementById('current-filters');
+			filters_div.innerHTML += '<li><b> rp_creation_time </b> {"start_year":"'+ start_year + '","start_month":"' + start_month +'","end_year":"' + end_year + '","end_month":"' + end_month + '","start_day":"' + start_day + '","end_day":"' + end_day+ '"}</li>';
+		}
+
 		filters.push(filter);
-		filters_div = document.getElementById('current-filters');
-		filters_div.innerHTML += '<li><b> rp_creation_time </b> {"start_year":"'+ start_year + '","start_month":"' + start_month +'","end_year":"' + end_year + '","end_month":"' + end_month + '","start_day":"' + start_day + '","end_day":"' + end_day+ '"}</li>';
 	}
 
 	function show_only(obj) {
@@ -156,6 +176,7 @@ What do you want to search:
 	<option class="" value="pages">Pages</option>
 	<option class="" value="places">Places</option>
 	<option class="" value="videos">Videos</option>
+	<option class="" value="events">Events</option>
 	<option class="" value="top">Top</option>
 </select>
 
@@ -349,6 +370,17 @@ What do you want to search:
 
 
 
+<div id="events" class="search_category">
+	<h2>Search Events</h2>
+<table>
+	<tr><td>
+	Location</td><td>
+	<input class="rp_events_location-filter_events_location" name="filter_events_location" type="text" placeholder="Location id" value=""></td><td>
+	<input class="rp_events_location" name="rp_events_location-filter_events_location" type="submit" onClick="add_filter(this,'filter_events_location')" value="add filter">
+	</td></tr>
+
+</table>
+</div>
 
 
 
