@@ -79,7 +79,7 @@
 
 		joined_filters = '{' + filters.join() + '}';
 		encoded_filters = btoa(joined_filters).replace('=','');
-		var search_url = 'https://www.facebook.com/search/' + search_type + '/?q=';
+		var search_url = 'https://apps.facebook.com/search/' + search_type + '/?q=';
 
 		search_url     += search_keyword + '&epa=FILTERS&filters=' + encoded_filters;
 		return search_url;
@@ -182,6 +182,7 @@
 </td><td class="updates-col">
 <h3>Updates</h3>
 <ul>
+	<li><span class="date">20/11/09:</span> Small fix for new interface</li>
 	<li><span class="date">20/01/03:</span> Small updates</li>
 	<li><span class="date">19/08/01:</span> SearchBook stops working because of Facebook changes</li>
 	<li><span class="date">19/06/17:</span> SearchBook extension supports videos and photos search</li>
